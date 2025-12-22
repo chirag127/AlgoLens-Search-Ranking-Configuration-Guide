@@ -1,0 +1,10 @@
+badges:
+  - name: Build Status
+    image: https://img.shields.io/github/actions/workflow/status/{owner}/{repo}/ci.yml?label=Build&style=flat-square
+    url: https://github.com/{owner}/{repo}/actions/workflows/ci.yml
+  - name: License
+    image: https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg?style=flat-square
+    url: LICENSE
+  - name: GitHub Stars
+    image: https://img.shields.io/github/stars/{owner}/{repo}?style=flat-square
+    url: https://github.com/{owner}/{repo}
