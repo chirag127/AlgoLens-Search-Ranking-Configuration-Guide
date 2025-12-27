@@ -7,17 +7,21 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "predev": "node scripts/generate-goggle-list.mjs",
-    "prebuild": "node scripts/generate-goggle-list.mjs"
+    "lint": "biome lint .",
+    "format": "biome format --write ."
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "tailwindcss": "^4.1.18",
-    "typescript": "~5.9.3",
+    "typescript": "^6.0.0-beta",
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "@preact/signals-react": "^2.0.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   }

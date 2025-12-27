@@ -1,46 +1,58 @@
-import { useState, useEffect } from 'react';
-import './style.css';
-import goggles from './goggles.json';
+import { signal, effect } from "@preact/signals-react";
+import goggles from "./goggles.json";
+import { ApiKeyManager } from "./components/ApiKeyManager";
+
+const selectedGoggle = signal<string | null>(null);
+const goggleContent = signal("");
+
+effect(() => {
+  if (selectedGoggle.value) {
+    fetch(`/goggles/${selectedGoggle.value}`)
+      .then((res) => res.text())
+      .then((text) => (goggleContent.value = text));
+  }
+});
 
 function App() {
-  const [selectedGoggle, setSelectedGoggle] = useState<string | null>(null);
-  const [goggleContent, setGoggleContent] = useState('');
-
-  useEffect(() => {
-    if (selectedGoggle) {
-      fetch(`/goggles/${selectedGoggle}`)
-        .then((res) => res.text())
-        .then((text) => setGoggleContent(text));
-    }
-  }, [selectedGoggle]);
-
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col font-sans">
-      <header className="bg-gray-800 p-4 shadow-md">
-        <h1 className="text-3xl font-bold">AlgoLens</h1>
-      </header>
-      <main className="flex flex-1 p-4">
-        <aside className="w-1/4 bg-gray-800 rounded-lg p-4 mr-4">
-          <h2 className="text-xl font-semibold mb-4">Goggles</h2>
-          <ul>
+    <div className="bg-gradient-to-br from-gray-900 to-black text-white min-h-screen font-sans">
+      <main className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <header className="md:col-span-3 bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg">
+          <h1 className="text-4xl font-bold tracking-tighter">AlgoLens</h1>
+          <p className="text-gray-400 mt-1">
+            A modern viewer for Brave Goggles.
+          </p>
+        </header>
+
+        <aside className="md:col-span-1 bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 tracking-tight">Goggles</h2>
+          <ul className="space-y-2">
             {goggles.map((goggle) => (
               <li
                 key={goggle}
-                className={`cursor-pointer p-2 rounded ${
-                  selectedGoggle === goggle ? 'bg-gray-700' : ''
+                className={`cursor-pointer p-3 rounded-lg transition-all duration-200 ${
+                  selectedGoggle.value === goggle
+                    ? "bg-white/20 shadow-md"
+                    : "hover:bg-white/5"
                 }`}
-                onClick={() => setSelectedGoggle(goggle)}
+                onClick={() => (selectedGoggle.value = goggle)}
               >
                 {goggle}
               </li>
             ))}
           </ul>
+          <ApiKeyManager />
         </aside>
-        <section className="flex-1 bg-gray-800 rounded-lg p-4">
-          <h2 className="text-xl font-semibold mb-4">
-            {selectedGoggle ? selectedGoggle : 'Select a goggle to view its content'}
+
+        <section className="md:col-span-2 bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 tracking-tight">
+            {selectedGoggle.value
+              ? selectedGoggle.value
+              : "Select a goggle"}
           </h2>
-          <pre className="whitespace-pre-wrap">{goggleContent}</pre>
+          <pre className="whitespace-pre-wrap bg-black/20 rounded-lg p-4 text-gray-300">
+            {goggleContent.value}
+          </pre>
         </section>
       </main>
     </div>

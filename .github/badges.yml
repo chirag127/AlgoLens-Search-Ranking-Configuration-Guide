@@ -1,10 +1,18 @@
-badges:
-  - name: Build Status
-    image: https://img.shields.io/github/actions/workflow/status/{owner}/{repo}/ci.yml?label=Build&style=flat-square
-    url: https://github.com/{owner}/{repo}/actions/workflows/ci.yml
-  - name: License
-    image: https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg?style=flat-square
-    url: LICENSE
-  - name: GitHub Stars
-    image: https://img.shields.io/github/stars/{owner}/{repo}?style=flat-square
-    url: https://github.com/{owner}/{repo}
+- name: 'License'
+  shield: 'https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue.svg'
+  url: 'https://creativecommons.org/licenses/by-nc/4.0/'
+- name: 'Vite'
+  shield: 'https://img.shields.io/badge/vite-^7.2.4-blue.svg'
+  url: 'https://vitejs.dev/'
+- name: 'TypeScript'
+  shield: 'https://img.shields.io/badge/typescript-^6.0.0--beta-blue.svg'
+  url: 'https://www.typescriptlang.org/'
+- name: 'Tailwind CSS'
+  shield: 'https://img.shields.io/badge/tailwind%20css-^4.1.18-blue.svg'
+  url: 'https://tailwindcss.com/'
+- name: 'React'
+  shield: 'https://img.shields.io/badge/react-^19.2.3-blue.svg'
+  url: 'https://reactjs.org/'
+- name: 'Biome'
+  shield: 'https://img.shields.io/badge/biome-^1.8.3-blue.svg'
+  url: 'https://biomejs.dev/'
